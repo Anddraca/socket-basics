@@ -22,6 +22,7 @@ io.on('connection', function (socket) {
 	//both these should have a timestap timestamp...a JS timestap(milliseconda)
 
 	socket.emit('message', {
+		name: 'System',
 		text: 'Welcome to the Chat App',
 		timestamp: moment().valueOf()
 	});
