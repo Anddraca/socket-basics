@@ -6,10 +6,21 @@ var io = require('socket.io')(http);
 
 app.use(express.static(__dirname + '/public'));
 
-io.on('connection', function () {
+io.on('connection', function (socket) {
 	console.log('User connected via socket.io');
+
+	socket.on('message', function (message){
+		console.log('Message Received: ' + message.text);
+
+		//sends it to everyone but the person that sent it
+		socket.broadcast.emit('message', message);
+	});
+
+	socket.emit('message', {
+		text: 'Welcome to the Chat App'
+	});
 });
 
 http.listen(PORT, function(){
-	console.log('server Started!');
+	console.log('server Started:');
 });
