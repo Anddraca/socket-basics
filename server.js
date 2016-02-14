@@ -33,6 +33,8 @@ function sendCurrentUsers (socket) {
 	});
 }
 
+//try to add other commands? Private command, maybe?
+
 io.on('connection', function (socket) {
 	console.log('User connected via socket.io');
 
